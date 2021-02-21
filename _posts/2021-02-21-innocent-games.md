@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Innotion games"
+description: fsdfds
+tags: writeup
+---
 # Innocent Game?
 
 Đề bài:
