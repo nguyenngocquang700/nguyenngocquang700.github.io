@@ -8,41 +8,41 @@ tags: writeup
 
 Đề bài:
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-1.png)
 
 Bắt tay vào xem thử như nào thôi
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%201.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%201.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-2.png)
 
 Ở bài này ta thấy web cho phép mình thay đổi icon này thành icon khác, nên ban đầu mình đã ngây thơ thử 1 cách ngẫu nhiên
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%202.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%202.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-3.png)
 
 Oops, show ra lỗi này, trong warning hàm được dùng trong code xuất hiện lỗi là hàm `preg_replace()` . Hàm `preg_replace()`dùng để replace một chuỗi nào đó khới với đoạn `Regular Expression` truyền vào. Hàm này cũng có chức năng tương tự như hàm `str_repalce()`nhưng có sự khác biệt ở đây là một bên dùng regex một bên không dùng
 
 Như vậy để sử dụng replace được ta phải input bằng toán tử `/nội dung
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%203.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%203.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-4.png)
 
 submit phát thử nào!!!
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%204.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%204.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-5.png)
 
 chuẩn bàiii...!!!
 
 Theo như mình tìm hiểu thì ở hàm `preg_replace()` trong php có một lỗi khá nghiêm trọng, khi ta dùng regex là `/e` thì chúng cho phép ta execute code ngay đầu vào input. Như vậy, tiến hành thử bằng Burp Suite nào!
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%205.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%205.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-6.png)
 
 okayy, that's worked. Nhưng chớ vội mừng, tiếp đó mình tiến hành đọc file bằng cách gọi hàm system() và dùng command `cat index.php` nhưng không thể làm được vì hàm này đã filter dấu space và cả dấu nháy kép. Sau một lúc suy nghĩ, mình đã thử truyền parameter vào url vào dùng biến $_GET[] để get value
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%206.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%206.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-7.png)
 
 Oops Flag đây luôn =))
 
 À bên cạnh đó cũng có thể dùng hàm `file_get_contents()` để đọc file nữa
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%207.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%207.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-8.png)
 
 và ra kết quả tương tự
 
@@ -90,7 +90,7 @@ if (isset($_POST['pattern']) && isset($_POST['needle'])) {
 
 Vậy làm cách nào để ngăn chặn lỗi này trên php?
 
-![Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%208.png](Innocent%20Game%201412185212dd4bfd83865f087efd82f6/Untitled%208.png)
+![](_img\2021-02-21-innocent-games\2021-02-21-innocent-games-9.png)
 
 Trên thực tế lỗi này chỉ xuất hiện trên phiên bản thấp của php (<5.5.0). Bên cạnh đó, ta cũng có thể sử dụng hàm `preg_quote()` để trích dẫn các kí tự Regular Expression. Khi sử dụng hàm này thì tất cả các ký tự đặc biệt trong Regular Expression sẽ được thêm ký tự `\` phía trước nó. giúp ngăn chặn việc execute code như trên.
 
