@@ -8,14 +8,14 @@ tags: writeup
 
 Đề bài:
 
-![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-1.png)  
+![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-1.png?raw=true)  
 
 Bắt tay vào xem thử như nào thôi
 
-![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-2.png)  
+![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-2.png?raw=true)  
 Vừa nhìn vào thì đầu mình đã nhảy số rằng bài này sẽ đi khai thác lỗ hổng `File upload`. Vẫn như thói quen thì ban đầu mình view source của web lên và phát hiện được author đã comment code bên trong:  
 
-![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-3.png)  
+![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-3.png?raw=true)  
 Code cũng khá là đơn giản ban đầu web sẽ cho upfile bất kì không hề filter :D và file bắt buộc phải nhỏ hơn 1048576B. Tiếp đó nếu upload thành công thì file sẽ tạo ra link và move đến dir `/upload/[random name file], ngược lại xuất ra lỗi
 
 Như vậy với đề bài trên mục tiêu của ta sẽ đi đến folder /etc và ở đây sẽ có file flag.txt.  
@@ -33,7 +33,7 @@ Mình có thử upload một file hình và chèn vào đó là code php `echo "
 //flag: darkCON{us1ng_3_y34r_01d_bug_t0_byp4ss_d1s4ble_funct10n}
 ```
 Thành quả  
-![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-5.png) 
+![image](https://github.com/nguyenngocquang700/nguyenngocquang700.github.io/blob/master/_img/2021-02-22-[darkCON-CTF]-WTF-PHP-5.png?raw=true)  
 Bài này là bài khá dễ, file được upload lên server mà không hề filter format file nên rất dễ thực thi code và exploit.  
 Qua bài trên mình cũng tìm ra được một số hàm có thể thực thi code php mà mình cần nhớ đó là:  
 ```
