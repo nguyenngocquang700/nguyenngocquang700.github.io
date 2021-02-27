@@ -3,7 +3,7 @@ author: Grizzz
 email: nguyenngocquang700@gmail.com
 description: > # this means to ignore newlines until "show_exerpts:"
   Nếu ngày mai không đến...anh xin nói một lời yêu em...yêu say đắm như lần đầu tiên...
-show_excerpts: false # set to true to show excerpts on the homepage
+show_excerpts: true # set to true to show excerpts on the homepage
 
 paginate: 1
 paginate_path: "/blog/page:num/"
@@ -32,9 +32,6 @@ dash:
     - url: https://facebook.com/qng20/
       icon: facebook-square
       color: blue
-    - url: https://instagram.com/hello.wangg/
-      icon: instagram-square
-      color: pink
 
   show_author: true
 
